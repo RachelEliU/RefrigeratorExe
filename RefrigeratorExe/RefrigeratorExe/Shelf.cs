@@ -40,5 +40,36 @@ namespace RefrigeratorExe
         {
             return (Space >= space);
         }
+        public Item InShelf(string id)
+        {
+            foreach (var item in this.Items)
+            {
+                if (item.Id.ToString().Equals(id))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        public void RemoveItem(Item item)
+        {
+            Items.Remove(item);
+            item.ShelfItem=null;
+        }
+        public void CleanShelf()
+        {
+            List<Item> itemsToRemove = new List<Item>();
+            foreach (Item item in Items)
+            {
+                if (item.ExpiryDate < DateTime.Now)
+                {
+                    //this.RemoveItem(item);
+                    itemsToRemove.Add(item);
+                }
+
+            }
+            foreach (Item item in itemsToRemove)
+                this.RemoveItem(item);
+        }
     }
 }

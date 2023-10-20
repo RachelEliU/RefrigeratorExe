@@ -63,5 +63,27 @@ namespace RefrigeratorExe
         
             Console.WriteLine("There is no more space in Refrigeratir, you might want to clean rfrigerator!");
         }
+        public Item GetItem(string id)
+        {
+            Item item;
+            foreach (Shelf shelf in Shelves)
+            {
+                item = shelf.InShelf(id);
+                if (item != null)
+                {
+                    shelf.RemoveItem(item);
+                    return item;
+                }
+            }
+            Console.WriteLine("There is no item with this id ");
+            return null;
+        }
+        public void CleanRefrigeraot()
+        {
+            foreach (Shelf shelf in Shelves)
+            {
+                shelf.CleanShelf();
+            }
+        }
     }
 }
