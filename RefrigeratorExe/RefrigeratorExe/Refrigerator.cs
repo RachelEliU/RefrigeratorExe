@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RefrigeratorExe
 {
-    internal class Refrigerator
+    internal class Refrigerator :IComparable<Refrigerator>
     {
         public Guid id { get; }
         public string Model { get; private set; }
@@ -101,6 +101,31 @@ namespace RefrigeratorExe
                 itemsToEst.AddRange(shelf.FindItemsByTypeKosher(type, name));
             }
             return itemsToEst;
+        }
+        public int CompareTo(Refrigerator other)
+        {
+            return ((this.SpaceInRefrigerator() > other.SpaceInRefrigerator()) ? (-1) : (this.SpaceInRefrigerator() == other.SpaceInRefrigerator()) ? 0 : 1);
+        }
+        public List<Item> SortItems()
+        {
+            List<Item> items = new List<Item>();
+            foreach (Shelf shelf in this.Shelves)
+            {
+                items.AddRange(shelf.Items);
+            }
+            items.Sort();
+            return items;
+        }
+        public List<Shelf> SortShelf()
+        {
+            List<Shelf> shelfs = new List<Shelf>();
+            foreach (Shelf shelf in this.Shelves)
+            {
+                shelfs.Add(shelf);
+            }
+            shelfs.Sort();
+
+            return shelfs;
         }
     }
 }

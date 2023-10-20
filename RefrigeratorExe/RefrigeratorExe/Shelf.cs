@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RefrigeratorExe
 {
-    internal class Shelf
+    internal class Shelf :IComparable<Shelf>
     {
         public Guid Id{ get; }
         public int Floor { get; set; }
@@ -82,6 +82,10 @@ namespace RefrigeratorExe
                 }
             }
             return items;
+        }
+        public int CompareTo(Shelf Other)
+        {
+            return ((this.Space > Other.Space) ? (-1) : (this.Space == Other.Space) ? 0 : 1);
         }
     }
 }

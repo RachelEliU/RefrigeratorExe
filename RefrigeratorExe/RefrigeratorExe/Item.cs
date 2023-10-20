@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace RefrigeratorExe
 {
-    internal class Item
+    internal class Item : IComparable<Item>
     {
         public Guid Id { get; }
         public string Name { get; }
@@ -29,6 +29,10 @@ namespace RefrigeratorExe
         public override string ToString()
         {
             return "Items Id: " +Id.ToString() + "\nItems name: " + Name.ToString() + "\nItems type: " + Type.ToString() + "\nKosher: " + Kosher.ToString() + "\nItem exprie Date: " + ExpiryDate.Date + "\nItems space: " + Space + " Samar";
+        }
+        public int CompareTo(Item other)
+        {
+            return (this.ExpiryDate.CompareTo(other.ExpiryDate));
         }
     }
 }
