@@ -26,6 +26,9 @@ namespace RefrigeratorExe
             ExpiryDate = _expiryDate;
             Space = space;
         }
-
+        public override string ToString()
+        {
+            return "Items Id: " +Id.ToString() + "\nItems name: " + Name.ToString() + "\nItems type: " + Type.ToString() + "\nKosher: " + Kosher.ToString() + "\nItem exprie Date: " + ExpiryDate.Date + "\nItems space: " + Space + " Samar";
+        }
     }
 }

@@ -32,5 +32,15 @@ namespace RefrigeratorExe
                 this.Shelves.Add(new Shelf(this.Shelves.Count()));
             }
         }
+        public override string ToString()
+        {
+            string shelfs = "";
+            foreach (Shelf shelf in Shelves)
+            {
+                shelfs += "\n=================================================================================";
+                shelfs += "\n" + shelf.ToString();
+            }
+            return "Refrigerator id: " + id + " Model: " + Model + " Color: " + Color + " with " + NumberOfShelfs + " shefls containes \n" + shelfs;
+        }
     }
 }

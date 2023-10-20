@@ -19,5 +19,15 @@ namespace RefrigeratorExe
             Floor = floor;
             Items = new List<Item>();
         }
+        public override string ToString()
+        {
+            string items = "";
+            foreach (Item item in Items)
+            {
+                items = items + "\n______________________________________________";
+                items = items + "\n" + item.ToString();
+            }
+            return "Shelf Id:" + Id + "\nFloor " + Floor + "\nSpace left in shelf" + Space + "Samar" + "\nHere are the items that are on this shelf" + items;
+        }
     }
 }
