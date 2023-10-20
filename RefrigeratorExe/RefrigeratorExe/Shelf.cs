@@ -29,5 +29,16 @@ namespace RefrigeratorExe
             }
             return "Shelf Id:" + Id + "\nFloor " + Floor + "\nSpace left in shelf" + Space + "Samar" + "\nHere are the items that are on this shelf" + items;
         }
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
+            Space -= item.Space;
+            item.ShelfItem=this;
+            Console.WriteLine("Added Item {0} to shelf number{1}", item.Id, this.Id);
+        }
+        public bool IsSpaceInShelf(int space)
+        {
+            return (Space >= space);
+        }
     }
 }

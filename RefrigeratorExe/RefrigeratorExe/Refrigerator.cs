@@ -42,5 +42,26 @@ namespace RefrigeratorExe
             }
             return "Refrigerator id: " + id + " Model: " + Model + " Color: " + Color + " with " + NumberOfShelfs + " shefls containes \n" + shelfs;
         }
+        public int SpaceInRefrigerator()
+        {
+            int spaceSum = 0;
+            foreach (Shelf shelf in Shelves)
+                spaceSum += shelf.Space;
+            return spaceSum;
+        }
+        public void AddItem(Item item)
+        {
+            //Shelf shelf1;
+            foreach (Shelf shelf in Shelves)
+            {
+                if (shelf.IsSpaceInShelf(item.Space))
+                {
+                    shelf.AddItem(item);
+                    return;
+                }
+            }
+        
+            Console.WriteLine("There is no more space in Refrigeratir, you might want to clean rfrigerator!");
+        }
     }
 }
