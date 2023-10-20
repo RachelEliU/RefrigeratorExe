@@ -80,15 +80,28 @@ namespace RefrigeratorExe
         }
         public void CleanRefrigeraot()
         {
+            
             foreach (Shelf shelf in Shelves)
             {
                 shelf.CleanShelf();
             }
         }
+
+        public List<Item> CleanRefrigeraot(String Type, DateTime date)
+        {
+            List<Item> itemsToRemove = new List<Item>();
+            foreach (Shelf shelf in Shelves)
+            {
+                itemsToRemove.AddRange(shelf.CleanShelf(Type, date));
+            }
+            return itemsToRemove;
+        }
         public void RemoveItems(List<Item> items)
         {
             foreach (Item itemToRemove in items)
             {
+                if(itemToRemove.ExpiryDate.Date > DateTime.Now)
+                    Console.WriteLine("This Item it been removed " + itemToRemove.ToString());
                 this.GetItem(itemToRemove.Id.ToString());
             }
         }
