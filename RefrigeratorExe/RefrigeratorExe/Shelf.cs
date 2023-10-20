@@ -34,7 +34,7 @@ namespace RefrigeratorExe
             Items.Add(item);
             Space -= item.Space;
             item.ShelfItem=this;
-            Console.WriteLine("Added Item {0} to shelf number{1}", item.Id, this.Id);
+            Console.WriteLine("Added Item {0} to shelf number {1}", item.Name, this.Floor);
         }
         public bool IsSpaceInShelf(int space)
         {
@@ -88,9 +88,9 @@ namespace RefrigeratorExe
         public List<Item> FindItemsByTypeKosher(String type, string kosher)
         {
             List<Item> items = new List<Item>();
-            foreach (Item item in items)
+            foreach (Item item in Items)
             {
-                if (item.Type.Equals(type) && item.Kosher.Equals(kosher) && item.ExpiryDate < DateTime.Now)
+                if (item.Type.Equals(type) && item.Kosher.Equals(kosher) && item.ExpiryDate > DateTime.Now)
                 {
                     items.Add(item);
                 }

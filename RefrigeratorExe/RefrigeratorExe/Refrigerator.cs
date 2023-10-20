@@ -18,7 +18,7 @@ namespace RefrigeratorExe
 
         public Refrigerator(string model, string color, int shelf)
         {
-            id = new Guid(model);
+            id = new Guid();
             Model = model;
             Color = color;
             NumberOfShelfs = shelf;
@@ -49,7 +49,7 @@ namespace RefrigeratorExe
                 spaceSum += shelf.Space;
             return spaceSum;
         }
-        public void AddItem(Item item)
+        public bool AddItem(Item item)
         {
             //Shelf shelf1;
             foreach (Shelf shelf in Shelves)
@@ -57,11 +57,12 @@ namespace RefrigeratorExe
                 if (shelf.IsSpaceInShelf(item.Space))
                 {
                     shelf.AddItem(item);
-                    return;
+                    return true;
                 }
             }
         
             Console.WriteLine("There is no more space in Refrigeratir, you might want to clean rfrigerator!");
+            return false;
         }
         public Item GetItem(string id)
         {
@@ -77,6 +78,13 @@ namespace RefrigeratorExe
             }
             Console.WriteLine("There is no item with this id ");
             return null;
+        }
+        public List<Item> GetItems()
+        {
+            List<Item> items = new List<Item>();
+            foreach(Shelf shelf in Shelves)
+                items.AddRange(shelf.Items);
+            return items;
         }
         public void CleanRefrigeraot()
         {
@@ -107,13 +115,12 @@ namespace RefrigeratorExe
         }
         public List<Item> WhatIsThereToEat(string type, string name)
         {
-            List<Item> itemsToEst = new List<Item>();
-            this.CleanRefrigeraot();
+            List<Item> itemsToEat = new List<Item>();
             foreach (Shelf shelf in Shelves)
             {
-                itemsToEst.AddRange(shelf.FindItemsByTypeKosher(type, name));
+                itemsToEat.AddRange(shelf.FindItemsByTypeKosher(type, name));
             }
-            return itemsToEst;
+            return itemsToEat;
         }
         public int CompareTo(Refrigerator other)
         {

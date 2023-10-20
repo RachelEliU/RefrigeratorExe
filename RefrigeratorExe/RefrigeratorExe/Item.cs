@@ -9,18 +9,32 @@ namespace RefrigeratorExe
 {
     internal class Item : IComparable<Item>
     {
+        private string _type;
+        private string _kosger;
         public Guid Id { get; }
         public string Name { get; }
         public Shelf ShelfItem { get; set; }
-        public string Type { get; set; }
-        public string Kosher {  get; set; }
+        public string Type
+        {
+            get
+            {
+                return _type;
+            }
+              private set
+            {
+                if (value.Equals("Food") || value.Equals("Drink"))
+                    _type = value;
+                else
+                    Console.WriteLine("Illegal type , type must be Food or Drink ");
+            }
+        }
+        public string Kosher {  get;  private set; }
         public DateTime ExpiryDate { get; set; }
         public int Space { get; set; }
-        public Item(string name, Shelf shelf, string type, string kosher, DateTime _expiryDate,int space) 
+        public Item(string name,string type, string kosher, DateTime _expiryDate,int space) 
         {
             Id = Guid.NewGuid();
             Name = name;
-            ShelfItem = shelf;
             Type = type;
             Kosher = kosher;
             ExpiryDate = _expiryDate;
