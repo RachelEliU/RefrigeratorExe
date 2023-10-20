@@ -71,5 +71,17 @@ namespace RefrigeratorExe
             foreach (Item item in itemsToRemove)
                 this.RemoveItem(item);
         }
+        public List<Item> FindItemsByTypeKosher(String type, string kosher)
+        {
+            List<Item> items = new List<Item>();
+            foreach (Item item in items)
+            {
+                if (item.Type.Equals(type) && item.Kosher.Equals(kosher) && item.ExpiryDate < DateTime.Now)
+                {
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
     }
 }

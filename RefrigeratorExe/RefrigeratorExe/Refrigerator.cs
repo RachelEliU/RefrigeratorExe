@@ -85,5 +85,22 @@ namespace RefrigeratorExe
                 shelf.CleanShelf();
             }
         }
+        public void RemoveItems(List<Item> items)
+        {
+            foreach (Item itemToRemove in items)
+            {
+                this.GetItem(itemToRemove.Id.ToString());
+            }
+        }
+        public List<Item> WhatIsThereToEat(string type, string name)
+        {
+            List<Item> itemsToEst = new List<Item>();
+            this.CleanRefrigeraot();
+            foreach (Shelf shelf in Shelves)
+            {
+                itemsToEst.AddRange(shelf.FindItemsByTypeKosher(type, name));
+            }
+            return itemsToEst;
+        }
     }
 }
