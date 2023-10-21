@@ -12,6 +12,7 @@ namespace RefrigeratorExe
     {
         private string _model;
 
+
         public Guid id { get; }
         public string Model
         {
@@ -62,7 +63,7 @@ namespace RefrigeratorExe
             string shelfs = "";
             foreach (Shelf shelf in Shelves)
             {
-                shelfs += "\n=================================================================================";
+                shelfs += "\n=================================================================================\n";
                 shelfs += "\n" + shelf.ToString();
             }
             return "Refrigerator id: " + id + " Model: " + Model + " Color: " + Color + " with " + NumberOfShelfs + " shefls containes \n" + shelfs;

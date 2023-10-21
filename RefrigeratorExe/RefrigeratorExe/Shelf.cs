@@ -60,7 +60,7 @@ namespace RefrigeratorExe
             string result;
             foreach (Item item in Items)
             {
-                items = items + "\n______________________________________________";
+                items = items + "\n______________________________________________\n";
                 items = items + "\n" + item.ToString();
             }
             result = "Shelf Id:" + Id + "\nFloor: " + Floor + "\nSpace left in shelf: " + Space + " Samar";
@@ -84,7 +84,7 @@ namespace RefrigeratorExe
         }
         public Item InShelf(string id)
         {
-            foreach (var item in this.Items)
+            foreach (Item item in this.Items)
             {
                 if (item.Id.ToString().Equals(id))
                 {

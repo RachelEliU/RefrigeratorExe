@@ -29,6 +29,7 @@ namespace RefrigeratorExe
                     throw new ArithmeticException("Illegal name , name must contain a String ");
             }
         }
+
         public Shelf ShelfItem { get; set; }
         public string Type
         {

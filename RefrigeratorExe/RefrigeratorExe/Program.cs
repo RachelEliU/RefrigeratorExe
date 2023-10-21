@@ -5,6 +5,7 @@
        
         static void Main(string[] args)
         {
+
             bool flag = true;
             int numberPress;
             List<Refrigerator> refrigerators = new List<Refrigerator>();
@@ -184,7 +185,10 @@
             Console.WriteLine("Lets take out a item ");
             String id =InputID();
             Item item10 = refrigerator.GetItem(id.ToString());
-            Console.WriteLine("Here is the {0} " + item10.Name);
+            if (item10 != null)
+                Console.WriteLine("Here is the {0} " + item10.Name);
+            else
+                Console.WriteLine("there is not such item");
         }
         public static void WhatDoYouWantToEat(Refrigerator refrigerator)
         {
