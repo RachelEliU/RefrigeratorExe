@@ -87,7 +87,7 @@ namespace RefrigeratorExe
                 }
             }
         
-            Console.WriteLine("There is no more space in Refrigeratir, you might want to clean rfrigerator!");
+            Console.WriteLine("There is no more space in Refrigeratir, you might want to clean refrigerator!");
             return false;
         }
         public Item GetItem(string id)
