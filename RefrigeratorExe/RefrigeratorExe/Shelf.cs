@@ -8,26 +8,68 @@ namespace RefrigeratorExe
 {
     internal class Shelf :IComparable<Shelf>
     {
+        private int _floor;
+        private int _space;
         public Guid Id{ get; }
-        public int Floor { get; set; }
-        public int Space { get; set; }
+        public int Floor {
+            get
+            {
+                return _floor;
+            }
+            private set
+            {
+                if (value >= 0)
+                    _floor = value;
+                else
+                    throw new ArithmeticException("Illegal floor ,floor must be a positive number");
+            }
+        }
+        public int Space {
+            get
+            {
+                return _space;
+            }
+            private set
+            {
+                if (value >= 0)
+                    _space = value;
+                else
+                    throw new ArithmeticException("Illegal space , space must be a positive number");
+            }
+        }
         public List<Item> Items;
         public Shelf(int floor) 
-        { 
-            Id = Guid.NewGuid();
-            Space = 20;
-            Floor = floor;
-            Items = new List<Item>();
+        {
+            try
+            {
+                Id = Guid.NewGuid();
+                Space = 20;
+                Floor = floor;
+                Items = new List<Item>();
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message); 
+            }
+           
         }
         public override string ToString()
         {
             string items = "";
+            string result;
             foreach (Item item in Items)
             {
                 items = items + "\n______________________________________________";
                 items = items + "\n" + item.ToString();
             }
-            return "Shelf Id:" + Id + "\nFloor " + Floor + "\nSpace left in shelf" + Space + "Samar" + "\nHere are the items that are on this shelf" + items;
+            result = "Shelf Id:" + Id + "\nFloor: " + Floor + "\nSpace left in shelf: " + Space + " Samar";
+            if (items.Length != 0)
+                result += "\n Here are the items that are on this shelf\n" + items;
+            else
+                result += "\nNo items on this shelf";
+            return result;
+            //return "Shelf Id:" + Id + "\nFloor " + Floor + "\nSpace left in shelf" + Space + "Samar" + "\nHere are the items that are on this shelf" + items;
         }
         public void AddItem(Item item)
         {

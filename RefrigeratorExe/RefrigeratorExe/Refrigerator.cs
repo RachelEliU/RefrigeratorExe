@@ -4,14 +4,30 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RefrigeratorExe
 {
     internal class Refrigerator :IComparable<Refrigerator>
     {
+        private string _model;
+
         public Guid id { get; }
-        public string Model { get; private set; }
-        public string Color { get; private set; }
+        public string Model
+        {
+            get
+            {
+                return _model;
+            }
+            private set
+            {
+                if (!value.Equals(""))
+                    _model = value;
+                else
+                    throw new ArithmeticException("Illegal model ,model must contain a String ");
+            }
+        }
+        public string Color { get; set; }
         public int NumberOfShelfs { get; set; }
         public List<Shelf> Shelves;
 
@@ -19,7 +35,16 @@ namespace RefrigeratorExe
         public Refrigerator(string model, string color, int shelf)
         {
             id = new Guid();
-            Model = model;
+            try
+            {
+                Model = model;
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message); 
+            }
             Color = color;
             NumberOfShelfs = shelf;
             Shelves = new List<Shelf>();
