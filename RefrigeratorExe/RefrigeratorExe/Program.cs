@@ -140,6 +140,7 @@
         {
             string inputId = "";
             Console.WriteLine("Please enter item id");
+            inputId = Console.ReadLine();
             if (!inputId.Equals(""))
             {
                 return inputId;
