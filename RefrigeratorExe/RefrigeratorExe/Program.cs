@@ -55,7 +55,7 @@
                         CallSortShelfs(refrigerator);
                         break;
                     case 9:
-                        SortRefrigerator(refrigerators);
+                        CallSortRefrigerator(refrigerators);
                         break;
                     case 10:
                         ReadyForShopping(refrigerator);
@@ -269,5 +269,15 @@
                 Console.WriteLine("Shelf id {0} shelf space {1}", shelf.Id, shelf.Space);
             }
         }
+        public static void CallSortRefrigerator(List<Refrigerator> refrigeratorList)
+        {
+            List<Refrigerator> refrigeratorsSorted = new List<Refrigerator>();
+            refrigeratorsSorted = SortRefrigerator(refrigeratorList);
+            foreach (Refrigerator refrigerator in refrigeratorsSorted)
+            {
+                Console.WriteLine("Refrigerator id {0} Refrigerator space {1}", refrigerator.id, refrigerator.SpaceInRefrigerator());
+            }
+        }
+
     }
 }
