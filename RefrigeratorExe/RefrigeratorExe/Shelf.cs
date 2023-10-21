@@ -10,6 +10,7 @@ namespace RefrigeratorExe
     {
         private int _floor;
         private int _space;
+        public int ShelfSpace = 20;
         public Guid Id{ get; }
         public int Floor {
             get
@@ -43,7 +44,7 @@ namespace RefrigeratorExe
             try
             {
                 Id = Guid.NewGuid();
-                Space = 20;
+                Space = ShelfSpace;
                 Floor = floor;
                 Items = new List<Item>();
             }

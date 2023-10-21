@@ -77,7 +77,7 @@ namespace RefrigeratorExe
         }
         public bool AddItem(Item item)
         {
-            //Shelf shelf1;
+            int count = 0;
             foreach (Shelf shelf in Shelves)
             {
                 if (shelf.IsSpaceInShelf(item.Space))
@@ -85,9 +85,17 @@ namespace RefrigeratorExe
                     shelf.AddItem(item);
                     return true;
                 }
+                else
+                {
+                    if (item.Space > shelf.ShelfSpace)
+                        count++;
+                }
+
             }
-        
-            Console.WriteLine("There is no more space in Refrigeratir, you might want to clean refrigerator!");
+            if (count == this.Shelves.Count)
+                Console.WriteLine("There is no shelf with this amount of space this item is too big");
+            else
+                Console.WriteLine("There is no more space in Refrigeratir, you might want to clean refrigerator!");
             return false;
         }
         public Item GetItem(string id)
