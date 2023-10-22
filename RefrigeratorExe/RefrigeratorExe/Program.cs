@@ -11,7 +11,8 @@
             List<Refrigerator> refrigerators = new List<Refrigerator>();
             Refrigerator refrigerator = new Refrigerator("Samsong","Red",4);
             refrigerators.Add(refrigerator);
-            Console.WriteLine("Welcome To The Refrigerator App");
+            BuildRefrigerators(refrigerators);
+            Console.WriteLine("\nWelcome To The Refrigerator App");
             
             while (flag) 
             {
@@ -277,6 +278,19 @@
             {
                 Console.WriteLine("Refrigerator id {0} Refrigerator space {1}", refrigerator.id, refrigerator.SpaceInRefrigerator());
             }
+        }
+        public static void BuildRefrigerators(List<Refrigerator> refrigeratorList)
+        {
+            Console.WriteLine("Adding items to Refrigerators");
+            Refrigerator refrigerator1 = new Refrigerator("Samsung 1", "Blue", 3);
+            Refrigerator refrigerator2 = new Refrigerator("Basch", "Black", 5);
+            refrigerator1.AddItem(new Item("Deli", "Food", "Meat", DateTime.Now.AddDays(2), 12));
+            refrigerator1.AddItem(new Item("Milk", "Drink", "Milk", DateTime.Now.AddDays(1), 10));
+            refrigerator1.AddItem(new Item("Meat", "Food", "Meat", DateTime.Now.AddDays(3), 15));
+            refrigerator2.AddItem(new Item("Deli", "Food", "Meat", DateTime.Now.AddDays(7), 5));
+            refrigerator1.AddItem(new Item("Yorgot", "Food", "Milk", DateTime.Now.AddDays(5), 7));
+            refrigeratorList.Add(refrigerator1);
+            refrigeratorList.Add(refrigerator2);
         }
 
     }

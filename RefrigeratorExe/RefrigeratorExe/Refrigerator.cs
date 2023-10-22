@@ -35,7 +35,7 @@ namespace RefrigeratorExe
 
         public Refrigerator(string model, string color, int shelf)
         {
-            id = new Guid();
+            id = Guid.NewGuid();
             try
             {
                 Model = model;
