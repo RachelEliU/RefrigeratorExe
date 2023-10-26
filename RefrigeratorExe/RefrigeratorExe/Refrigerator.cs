@@ -10,10 +10,10 @@ namespace RefrigeratorExe
 {
     internal class Refrigerator :IComparable<Refrigerator>
     {
-        private string _model;
+       // private string _model;
 
 
-        public Guid id { get; }
+        public Guid Id { get; }
         public string Model
         {
             get
@@ -22,7 +22,7 @@ namespace RefrigeratorExe
             }
             private set
             {
-                if (!value.Equals(""))
+                if (value!=null && !value.Equals(""))
                     _model = value;
                 else
                     throw new ArithmeticException("Illegal model ,model must contain a String ");
@@ -35,17 +35,11 @@ namespace RefrigeratorExe
 
         public Refrigerator(string model, string color, int shelf)
         {
-            id = Guid.NewGuid();
-            try
-            {
+            Id = Guid.NewGuid();
+            if (model != null && !model.Equals(""))
                 Model = model;
-
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e.Message); 
-            }
+            else
+                throw new ArithmeticException("Illegal model ,model must not be null and contain a String ");
             Color = color;
             NumberOfShelfs = shelf;
             Shelves = new List<Shelf>();
@@ -66,7 +60,7 @@ namespace RefrigeratorExe
                 shelfs += "\n=================================================================================\n";
                 shelfs += "\n" + shelf.ToString();
             }
-            return "Refrigerator id: " + id + " Model: " + Model + " Color: " + Color + " with " + NumberOfShelfs + " shefls containes \n" + shelfs;
+            return "Refrigerator id: " + Id + " Model: " + Model + " Color: " + Color + " with " + NumberOfShelfs + " shefls containes \n" + shelfs;
         }
         public int SpaceInRefrigerator()
         {
